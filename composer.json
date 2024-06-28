@@ -1,0 +1,18 @@
+{
+    "name": "vinh/php3",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vinhpq",
+            "email": "vinhpq@ierp.vn"
+        }
+    ],
+    "require": {
+        "phroute/phroute": "^2.2",
+        "eftec/bladeone": "^4.13"
+    }
+}

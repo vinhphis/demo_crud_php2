@@ -1,0 +1,47 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title'); ?>
+ Trang sản phẩm
+<?php $this->stopSection(); ?>
+<?php $this->startSection('content'); ?>
+ <button class="btn btn-primary">
+ <a href="<?php echo \htmlentities(route('?url=add-product')??'', ENT_QUOTES, 'UTF-8', false); ?>" class="text-decoration-none text-white">Add Product</a>
+ </button>
+ <table class="table table-hover table-bordered mt-3">
+ <thead>
+ <tr>
+ <th scope="col">STT</th>
+ <th scope="col">Name</th>
+ <th scope="col">Price</th>
+ <th scope="col">Category</th>
+ <th scope="col">Action</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $listProduct; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $val): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <th scope="row"><?php echo \htmlentities($loop->iteration??'', ENT_QUOTES, 'UTF-8', false); ?></th>
+ <td><?php echo \htmlentities($val->Pname??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($val->price)??'', ENT_QUOTES, 'UTF-8', false); ?>đ</td>
+ <td><?php echo \htmlentities($val->Cname??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td class="col-3">
+ <button class="btn btn-info">
+ <a href="<?php echo \htmlentities(route('?url=show-product/'.$val->Pid)??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ class="text-decoration-none text-white">Show</a>
+ </button>
+ <button class="btn btn-warning">
+ <a href="<?php echo \htmlentities(route('?url=edit-product/'.$val->Pid)??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ class="text-decoration-none text-white">Update</a>
+ </button>
+ <button class="btn btn-danger">
+ <a href="<?php echo \htmlentities(route('?url=delete-product/'.$val->Pid)??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ onclick="return confirm('Bạn có muốn xóa không?')"
+ class="text-decoration-none text-white">Delete</a>
+ </button>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>
